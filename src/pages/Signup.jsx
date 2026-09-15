@@ -16,6 +16,9 @@ export default function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!formData.email.endsWith('.edu') && !formData.email.endsWith('.ac.in')) {
+      return setError('You must use a valid college email (.edu or .ac.in)');
+    }
     if (formData.password !== formData.confirmPassword) {
       return setError('Passwords do not match');
     }
@@ -24,7 +27,7 @@ export default function Signup() {
       setError('');
       setLoading(true);
       const { email, password, ...profileData } = formData;
-      await signup(email, password, { ...profileData, photoURL: 'https://via.placeholder.com/150' });
+      await signup(email, password, { ...profileData, photoURL: `https://ui-avatars.com/api/?name=${encodeURIComponent(formData.name)}&background=f43f5e&color=fff&size=150` });
       navigate('/verify-email');
     } catch (err) {
       setError('Failed to create an account: ' + err.message);

@@ -21,8 +21,8 @@ export default function Profile() {
         <div className="h-32 bg-gradient-to-r from-rose-500 to-rose-600 rounded-2xl -mx-4 -mt-4"></div>
         <div className="absolute -bottom-12 left-4 flex items-end gap-4">
           <div className="relative">
-            <img src={userProfile.photoURL} alt="Profile" className="w-24 h-24 rounded-full border-4 border-[#0F0A1A] object-cover bg-gray-800" />
-            <button className="absolute bottom-0 right-0 w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center text-white border-2 border-[#0F0A1A]">
+            <img src={userProfile.photoURL} alt="Profile" className="w-24 h-24 rounded-full border-4 border-white object-cover bg-gray-800" />
+            <button className="absolute bottom-0 right-0 w-8 h-8 bg-rose-500 rounded-full flex items-center justify-center text-white border-2 border-white">
               <Edit2 className="w-4 h-4" />
             </button>
           </div>

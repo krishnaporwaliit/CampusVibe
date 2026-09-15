@@ -45,7 +45,7 @@ export default function VerifyEmail() {
         </div>
         <button 
           onClick={resendEmail}
-          className="bg-white hover:bg-gray-50 border border-gray-200 text-white py-2 px-6 rounded-xl transition"
+          className="bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 py-2 px-6 rounded-xl transition"
         >
           Resend Email
         </button>
