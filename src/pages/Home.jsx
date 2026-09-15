@@ -36,39 +36,44 @@ export default function Home() {
 
   const handleRate = async (score) => {
     if (!selectedUser) return;
-    const ratingRef = doc(db, 'ratings', `${currentUser.uid}_${selectedUser.id}`);
-    const ratingSnap = await getDoc(ratingRef);
-    
-    let oldScore = 0;
-    const hasRated = ratingSnap.exists();
-    if (hasRated) oldScore = ratingSnap.data().score;
-    
-    await setDoc(ratingRef, {
-      raterId: currentUser.uid,
-      ratedId: selectedUser.id,
-      score,
-      timestamp: new Date().toISOString()
-    });
-    
-    const userRef = doc(db, 'users', selectedUser.id);
-    const userSnap = await getDoc(userRef);
-    const userData = userSnap.data();
-    
-    let newCount = userData.ratingCount || 0;
-    let oldAvg = userData.averageRating || 0;
-    
-    if (!hasRated) newCount += 1;
-    
-    const totalScore = (oldAvg * (hasRated ? newCount : newCount - 1)) - oldScore + score;
-    const newAvg = totalScore / newCount;
-    
-    await updateDoc(userRef, {
-      ratingCount: newCount,
-      averageRating: newAvg
-    });
-    
-    setUsers(users.map(u => u.id === selectedUser.id ? { ...u, ratingCount: newCount, averageRating: newAvg } : u));
-    setSelectedUser(null);
+    try {
+      const ratingRef = doc(db, 'ratings', `${currentUser.uid}_${selectedUser.id}`);
+      const ratingSnap = await getDoc(ratingRef);
+      
+      let oldScore = 0;
+      const hasRated = ratingSnap.exists();
+      if (hasRated) oldScore = ratingSnap.data().score;
+      
+      await setDoc(ratingRef, {
+        raterId: currentUser.uid,
+        ratedId: selectedUser.id,
+        score,
+        timestamp: new Date().toISOString()
+      });
+      
+      const userRef = doc(db, 'users', selectedUser.id);
+      const userSnap = await getDoc(userRef);
+      const userData = userSnap.data();
+      
+      let newCount = userData.ratingCount || 0;
+      let oldAvg = userData.averageRating || 0;
+      
+      if (!hasRated) newCount += 1;
+      
+      const totalScore = (oldAvg * (hasRated ? newCount : newCount - 1)) - oldScore + score;
+      const newAvg = totalScore / newCount;
+      
+      await updateDoc(userRef, {
+        ratingCount: newCount,
+        averageRating: newAvg
+      });
+      
+      setUsers(users.map(u => u.id === selectedUser.id ? { ...u, ratingCount: newCount, averageRating: newAvg } : u));
+      setSelectedUser(null);
+    } catch (err) {
+      console.error("Error submitting rating:", err);
+      alert("Failed to submit rating: " + err.message);
+    }
   };
 
   return (
