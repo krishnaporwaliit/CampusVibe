@@ -1,0 +1,57 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow authenticated users to read all user profiles
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Ratings - authenticated users can create, only rate once per person
+    match /ratings/{ratingId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && resource.data.raterId == request.auth.uid;
+    }
+
+    // Likes for swipe feature
+    match /likes/{likeId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Matches
+    match /matches/{matchId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // Crushes
+    match /crushes/{crushId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Daily matches
+    match /dailyMatches/{matchId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Blind chats
+    match /blindChats/{chatId} {
+      allow read, write: if request.auth != null;
+
+      match /messages/{messageId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+
+    // Chats and messages
+    match /chats/{chatId} {
+      allow read, write: if request.auth != null;
+
+      match /messages/{messageId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+  }
+}
