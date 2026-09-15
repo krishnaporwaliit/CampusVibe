@@ -21,13 +21,15 @@ export default function ChatRoom() {
     }
     fetchUser();
     
-    // Mocking messages for demo, normally query messages subcollection of the match
-    const q = query(collection(db, `chats/${chatId}/messages`), orderBy('timestamp', 'asc'));
+    // Generate a consistent unique chat ID between the two users
+    const uniqueChatId = [currentUser.uid, chatId].sort().join('_');
+    
+    const q = query(collection(db, `chats/${uniqueChatId}/messages`), orderBy('timestamp', 'asc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setMessages(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
     return () => unsubscribe();
-  }, [chatId]);
+  }, [chatId, currentUser.uid]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -37,7 +39,9 @@ export default function ChatRoom() {
     e.preventDefault();
     if (!newMessage.trim()) return;
     
-    await addDoc(collection(db, `chats/${chatId}/messages`), {
+    const uniqueChatId = [currentUser.uid, chatId].sort().join('_');
+    
+    await addDoc(collection(db, `chats/${uniqueChatId}/messages`), {
       text: newMessage,
       senderId: currentUser.uid,
       timestamp: serverTimestamp()

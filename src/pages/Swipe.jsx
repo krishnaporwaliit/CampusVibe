@@ -10,6 +10,8 @@ export default function Swipe() {
   const { currentUser } = useAuth();
   const [match, setMatch] = useState(null);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function fetchCards() {
       const q = query(collection(db, 'users'));
@@ -22,6 +24,7 @@ export default function Swipe() {
       });
       // In real app: filter out already swiped
       setCards(fetched);
+      setLoading(false);
     }
     fetchCards();
   }, [currentUser.uid]);
@@ -46,6 +49,7 @@ export default function Swipe() {
     }
   };
 
+  if (loading) return <div className="flex h-full items-center justify-center text-gray-500">Loading profiles...</div>;
   if (cards.length === 0) return <div className="text-center mt-20 text-gray-500">No more profiles to swipe!</div>;
 
   return (

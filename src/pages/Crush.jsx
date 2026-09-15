@@ -11,22 +11,37 @@ export default function Crush() {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-    async function fetchUsers() {
-      const q = query(collection(db, 'users'));
-      const snapshot = await getDocs(q);
-      const fetched = [];
-      snapshot.forEach(doc => {
+    async function fetchData() {
+      // Fetch all users
+      const userQ = query(collection(db, 'users'));
+      const userSnap = await getDocs(userQ);
+      const fetchedUsers = [];
+      userSnap.forEach(doc => {
         if (doc.id !== currentUser.uid) {
-          fetched.push({ id: doc.id, ...doc.data() });
+          fetchedUsers.push({ id: doc.id, ...doc.data() });
         }
       });
-      setUsers(fetched);
+      setUsers(fetchedUsers);
+
+      // Fetch today's crushes
+      const today = new Date().toISOString().split('T')[0];
+      const crushQ = query(collection(db, 'crushes'));
+      const crushSnap = await getDocs(crushQ);
+      const todayCrushes = [];
+      crushSnap.forEach(doc => {
+        const data = doc.data();
+        if (data.from === currentUser.uid && data.date === today) {
+          todayCrushes.push(data.to);
+        }
+      });
+      setCrushes(todayCrushes);
     }
-    fetchUsers();
+    fetchData();
   }, [currentUser.uid]);
 
   const handlePickCrush = async (user) => {
     if (crushes.length >= 3) return alert('You can only pick 3 crushes per day!');
+    if (crushes.includes(user.id)) return alert('You already picked them today!');
     
     const crushRef = doc(db, 'crushes', `${currentUser.uid}_${user.id}`);
     await setDoc(crushRef, {
@@ -36,7 +51,7 @@ export default function Crush() {
       matched: false
     });
     
-    setCrushes([...crushes, user]);
+    setCrushes([...crushes, user.id]);
   };
 
   const filteredUsers = users.filter(u => u.name.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -74,9 +89,10 @@ export default function Crush() {
             </div>
             <button 
               onClick={() => handlePickCrush(user)}
-              className="p-2 bg-rose-500/20 text-rose-500 rounded-full hover:bg-rose-500/40 transition"
+              disabled={crushes.includes(user.id)}
+              className={`p-2 rounded-full transition ${crushes.includes(user.id) ? 'bg-rose-500 text-white' : 'bg-rose-500/20 text-rose-500 hover:bg-rose-500/40'}`}
             >
-              <Heart className="w-5 h-5" />
+              <Heart className={`w-5 h-5 ${crushes.includes(user.id) ? 'fill-current' : ''}`} />
             </button>
           </div>
         ))}
