@@ -79,7 +79,7 @@ export default function Home() {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${
-              activeTab === tab ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-gray-900' : 'text-gray-500 hover:text-gray-900'
+              activeTab === tab ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white' : 'text-gray-500 hover:text-gray-900'
             }`}
           >
             {tab}

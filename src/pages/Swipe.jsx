@@ -59,9 +59,9 @@ export default function Swipe() {
       
       {match && (
         <div className="fixed inset-0 bg-rose-600/90 backdrop-blur-md z-50 flex flex-col items-center justify-center p-6 text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6 animate-bounce">It's a Match! 💕</h1>
+          <h1 className="text-5xl font-bold text-white mb-6 animate-bounce">It&apos;s a Match! 💕</h1>
           <img src={match.photoURL} alt="Match" className="w-40 h-40 rounded-full border-4 border-white mb-6" />
-          <p className="text-xl text-gray-900 mb-8">You and {match.name} liked each other.</p>
+          <p className="text-xl text-white mb-8">You and {match.name} liked each other.</p>
           <button onClick={() => setMatch(null)} className="bg-white text-pink-600 font-bold py-3 px-8 rounded-full">
             Keep Swiping
           </button>
@@ -92,7 +92,7 @@ function SwipeCard({ user, onSwipe }) {
     >
       <img src={user.photoURL || 'https://via.placeholder.com/400x600'} alt={user.name} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-6 pointer-events-none">
-        <h2 className="text-3xl font-bold text-gray-900 mb-1">{user.name}</h2>
+        <h2 className="text-3xl font-bold text-white mb-1">{user.name}</h2>
         <p className="text-rose-600 mb-2">{user.department} • {user.year}</p>
         <p className="text-gray-600 text-sm line-clamp-3">{user.bio}</p>
       </div>

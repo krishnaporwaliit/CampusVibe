@@ -56,7 +56,7 @@ export default function Crush() {
         <input 
           type="text" 
           placeholder="Search students..." 
-          className="w-full bg-black/40 border border-gray-100 rounded-xl pl-10 pr-4 py-3 text-gray-900 focus:border-pink-500 outline-none transition"
+          className="w-full bg-white border border-gray-200 rounded-xl pl-10 pr-4 py-3 text-gray-900 focus:border-pink-500 outline-none transition"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />

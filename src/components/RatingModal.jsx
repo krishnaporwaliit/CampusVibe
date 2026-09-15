@@ -15,7 +15,7 @@ export default function RatingModal({ user, onClose, onSubmit }) {
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="glass-card w-full max-w-sm overflow-hidden relative"
         >
-          <button onClick={onClose} className="absolute top-4 right-4 p-2 bg-black/40 rounded-full text-gray-900 z-10 hover:bg-black/60 transition">
+          <button onClick={onClose} className="absolute top-4 right-4 p-2 bg-black/40 rounded-full text-white z-10 hover:bg-black/60 transition">
             <X className="w-5 h-5" />
           </button>
           

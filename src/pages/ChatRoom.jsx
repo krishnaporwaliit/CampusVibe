@@ -67,7 +67,7 @@ export default function ChatRoom() {
           const isMe = msg.senderId === currentUser.uid;
           return (
             <div key={msg.id} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[75%] p-3 rounded-2xl text-sm ${isMe ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-gray-900 rounded-br-none' : 'bg-white text-gray-900 rounded-bl-none'}`}>
+              <div className={`max-w-[75%] p-3 rounded-2xl text-sm ${isMe ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-br-none' : 'bg-white text-gray-900 rounded-bl-none'}`}>
                 {msg.text}
               </div>
             </div>
@@ -83,9 +83,9 @@ export default function ChatRoom() {
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type a message..."
-            className="flex-1 bg-black/40 border border-gray-100 rounded-full px-4 py-2 text-sm text-gray-900 focus:outline-none focus:border-pink-500"
+            className="flex-1 bg-white border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-900 focus:outline-none focus:border-pink-500"
           />
-          <button type="submit" className="w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center text-gray-900 hover:bg-rose-600 transition">
+          <button type="submit" className="w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center text-white hover:bg-rose-600 transition">
             <Send className="w-4 h-4" />
           </button>
         </form>
