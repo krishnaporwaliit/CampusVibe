@@ -15,7 +15,7 @@ export default function RatingModal({ user, onClose, onSubmit }) {
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           className="glass-card w-full max-w-sm overflow-hidden relative"
         >
-          <button onClick={onClose} className="absolute top-4 right-4 p-2 bg-black/40 rounded-full text-white z-10 hover:bg-black/60 transition">
+          <button onClick={onClose} className="absolute top-4 right-4 p-2 bg-black/40 rounded-full text-gray-900 z-10 hover:bg-black/60 transition">
             <X className="w-5 h-5" />
           </button>
           
@@ -26,8 +26,8 @@ export default function RatingModal({ user, onClose, onSubmit }) {
           
           <div className="p-6 text-center -mt-10 relative z-10">
             <h2 className="text-2xl font-bold">{user.name}</h2>
-            <p className="text-sm text-gray-400 mb-4">{user.department} • {user.year}</p>
-            <p className="text-sm text-gray-300 italic mb-6">"{user.bio || 'No bio yet'}"</p>
+            <p className="text-sm text-gray-500 mb-4">{user.department} • {user.year}</p>
+            <p className="text-sm text-gray-600 italic mb-6">"{user.bio || 'No bio yet'}"</p>
             
             <div className="flex justify-center gap-2 mb-6">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -54,7 +54,7 @@ export default function RatingModal({ user, onClose, onSubmit }) {
             <button 
               disabled={!selectedStar}
               onClick={() => onSubmit(selectedStar)}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 rounded-xl disabled:opacity-50 transition-opacity"
+              className="w-full bg-gradient-to-r from-rose-500 to-rose-600 text-white font-bold py-3 rounded-xl disabled:opacity-50 transition-opacity"
             >
               Submit Rating
             </button>

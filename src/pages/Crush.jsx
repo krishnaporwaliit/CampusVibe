@@ -45,18 +45,18 @@ export default function Crush() {
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-pink-600/20 to-purple-600/20 p-6 rounded-2xl border border-pink-500/20">
         <h2 className="text-xl font-bold mb-2 flex items-center gap-2">
-          <Heart className="text-pink-500" /> Anonymous Crush
+          <Heart className="text-rose-500" /> Anonymous Crush
         </h2>
-        <p className="text-sm text-gray-300">Pick up to 3 people you have a crush on. If they pick you too, it's a match! Shh... it's completely anonymous.</p>
-        <p className="mt-2 text-xs font-bold text-pink-400">{3 - crushes.length} picks remaining today.</p>
+        <p className="text-sm text-gray-600">Pick up to 3 people you have a crush on. If they pick you too, it's a match! Shh... it's completely anonymous.</p>
+        <p className="mt-2 text-xs font-bold text-rose-600">{3 - crushes.length} picks remaining today.</p>
       </div>
       
       <div className="relative">
-        <Search className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+        <Search className="absolute left-3 top-3 w-5 h-5 text-gray-500" />
         <input 
           type="text" 
           placeholder="Search students..." 
-          className="w-full bg-black/40 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white focus:border-pink-500 outline-none transition"
+          className="w-full bg-black/40 border border-gray-100 rounded-xl pl-10 pr-4 py-3 text-gray-900 focus:border-pink-500 outline-none transition"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />
@@ -69,12 +69,12 @@ export default function Crush() {
               <img src={user.photoURL} alt={user.name} className="w-10 h-10 rounded-full object-cover" />
               <div>
                 <p className="font-bold text-sm">{user.name}</p>
-                <p className="text-xs text-gray-400">{user.department} • {user.year}</p>
+                <p className="text-xs text-gray-500">{user.department} • {user.year}</p>
               </div>
             </div>
             <button 
               onClick={() => handlePickCrush(user)}
-              className="p-2 bg-pink-500/20 text-pink-500 rounded-full hover:bg-pink-500/40 transition"
+              className="p-2 bg-rose-500/20 text-rose-500 rounded-full hover:bg-rose-500/40 transition"
             >
               <Heart className="w-5 h-5" />
             </button>

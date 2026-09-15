@@ -46,16 +46,16 @@ export default function ChatRoom() {
   };
 
   return (
-    <div className="fixed inset-0 bg-[#0F0A1A] z-50 flex flex-col">
-      <header className="bg-white/10 backdrop-blur-md p-4 flex items-center gap-3 border-b border-white/10">
-        <button onClick={() => navigate(-1)} className="p-2 -ml-2 rounded-full hover:bg-white/10">
-          <ArrowLeft className="w-5 h-5 text-white" />
+    <div className="fixed inset-0 bg-[#FFFDFB] z-50 flex flex-col">
+      <header className="bg-white backdrop-blur-md p-4 flex items-center gap-3 border-b border-gray-100">
+        <button onClick={() => navigate(-1)} className="p-2 -ml-2 rounded-full hover:bg-white">
+          <ArrowLeft className="w-5 h-5 text-gray-900" />
         </button>
         {chatUser && (
           <>
             <img src={chatUser.photoURL} alt={chatUser.name} className="w-10 h-10 rounded-full object-cover" />
             <div>
-              <h2 className="font-bold text-sm text-white">{chatUser.name}</h2>
+              <h2 className="font-bold text-sm text-gray-900">{chatUser.name}</h2>
               <p className="text-[10px] text-green-400">Online</p>
             </div>
           </>
@@ -67,7 +67,7 @@ export default function ChatRoom() {
           const isMe = msg.senderId === currentUser.uid;
           return (
             <div key={msg.id} className={`flex ${isMe ? 'justify-end' : 'justify-start'}`}>
-              <div className={`max-w-[75%] p-3 rounded-2xl text-sm ${isMe ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-br-none' : 'bg-white/10 text-white rounded-bl-none'}`}>
+              <div className={`max-w-[75%] p-3 rounded-2xl text-sm ${isMe ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-gray-900 rounded-br-none' : 'bg-white text-gray-900 rounded-bl-none'}`}>
                 {msg.text}
               </div>
             </div>
@@ -76,16 +76,16 @@ export default function ChatRoom() {
         <div ref={scrollRef}></div>
       </main>
       
-      <footer className="p-4 bg-[#1A1025] border-t border-white/10">
+      <footer className="p-4 bg-white border-t border-gray-100">
         <form onSubmit={handleSend} className="flex gap-2">
           <input 
             type="text" 
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type a message..."
-            className="flex-1 bg-black/40 border border-white/10 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-pink-500"
+            className="flex-1 bg-black/40 border border-gray-100 rounded-full px-4 py-2 text-sm text-gray-900 focus:outline-none focus:border-pink-500"
           />
-          <button type="submit" className="w-10 h-10 bg-pink-500 rounded-full flex items-center justify-center text-white hover:bg-pink-600 transition">
+          <button type="submit" className="w-10 h-10 bg-rose-500 rounded-full flex items-center justify-center text-gray-900 hover:bg-rose-600 transition">
             <Send className="w-4 h-4" />
           </button>
         </form>

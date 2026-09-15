@@ -73,13 +73,13 @@ export default function Home() {
 
   return (
     <div className="space-y-4">
-      <div className="flex bg-white/5 rounded-xl p-1 mb-6">
+      <div className="flex bg-gray-100/50 rounded-xl p-1 mb-6">
         {['Feed', 'Top Rated'].map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${
-              activeTab === tab ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' : 'text-gray-400 hover:text-white'
+              activeTab === tab ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-gray-900' : 'text-gray-500 hover:text-gray-900'
             }`}
           >
             {tab}

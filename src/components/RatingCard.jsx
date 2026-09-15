@@ -19,12 +19,12 @@ export default function RatingCard({ user, onClick }) {
           className="w-full h-full object-cover"
         />
         <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-3 pt-8">
-          <h3 className="font-bold text-white text-sm truncate">{user.name}</h3>
-          <p className="text-xs text-gray-300">{user.department} • {user.year}</p>
+          <h3 className="font-bold text-gray-900 text-sm truncate">{user.name}</h3>
+          <p className="text-xs text-gray-600">{user.department} • {user.year}</p>
         </div>
       </div>
       
-      <div className="p-3 bg-white/5 flex flex-col items-center">
+      <div className="p-3 bg-gray-50 border-t border-gray-100 flex flex-col items-center">
         <div className="flex items-center gap-1 mb-1">
           {[1, 2, 3, 4, 5].map(star => (
             <Star 
@@ -34,7 +34,7 @@ export default function RatingCard({ user, onClick }) {
           ))}
           <span className="text-xs font-bold ml-1">{rating.toFixed(1)}</span>
         </div>
-        <p className="text-[10px] text-gray-400">
+        <p className="text-[10px] text-gray-500">
           rated by {user.ratingCount || 0} people
         </p>
       </div>

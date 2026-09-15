@@ -46,12 +46,12 @@ export default function Chat() {
           <div 
             key={match.id} 
             onClick={() => navigate(`/chat/${match.id}`)}
-            className="glass-card p-3 flex items-center gap-4 cursor-pointer hover:bg-white/10 transition"
+            className="glass-card p-3 flex items-center gap-4 cursor-pointer hover:bg-white transition"
           >
             <img src={match.photoURL} alt={match.name} className="w-12 h-12 rounded-full object-cover" />
             <div className="flex-1">
               <h3 className="font-bold text-sm">{match.name}</h3>
-              <p className="text-xs text-gray-400 truncate">Hey, how are you doing?</p>
+              <p className="text-xs text-gray-500 truncate">Hey, how are you doing?</p>
             </div>
             <div className="text-[10px] text-gray-500">2m ago</div>
           </div>
@@ -63,13 +63,13 @@ export default function Chat() {
         className="w-full mt-6 bg-gradient-to-r from-indigo-500 to-purple-600 p-4 rounded-xl flex items-center justify-between shadow-lg"
       >
         <div className="flex items-center gap-3">
-          <MessageCircle className="text-white w-6 h-6" />
+          <MessageCircle className="text-gray-900 w-6 h-6" />
           <div className="text-left">
-            <h3 className="font-bold text-white">Blind Chat</h3>
+            <h3 className="font-bold text-gray-900">Blind Chat</h3>
             <p className="text-xs text-indigo-200">Chat anonymously with someone new</p>
           </div>
         </div>
-        <span className="bg-white/20 px-3 py-1 rounded-full text-xs font-bold text-white">Join</span>
+        <span className="bg-gray-100 px-3 py-1 rounded-full text-xs font-bold text-gray-900">Join</span>
       </button>
     </div>
   );
